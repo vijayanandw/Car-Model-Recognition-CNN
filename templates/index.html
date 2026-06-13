@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Car Vision — Deep Learning Vehicle Recognition</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="logo">
+    <div class="logo-dot"></div>
+    AI<span>Car</span>Vision
+  </div>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#tech">Stack</a></li>
+    <li><a href="#upload">Predict</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow animate-fadeup">
+      <span class="hero-eyebrow-dot"></span>
+      Deep Learning · Computer Vision
+    </div>
+
+    <h1 class="animate-fadeup delay-1">
+      Identify Any Car Model<br>
+      <em>in Under a Second</em>
+    </h1>
+
+    <p class="hero-sub animate-fadeup delay-2">
+      Upload a vehicle photo and let MobileNetV2-powered CNN classify
+      it across 196 categories from the Stanford Cars Dataset —
+      with real-time confidence scoring.
+    </p>
+
+    <div class="hero-actions animate-fadeup delay-3">
+      <a href="#upload" class="btn-primary">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+          <polyline points="17 8 12 3 7 8"/>
+          <line x1="12" y1="3" x2="12" y2="15"/>
+        </svg>
+        Start Prediction
+      </a>
+      <a href="#features" class="btn-ghost">See How It Works</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">196<span>+</span></div>
+      <div class="stat-label">Car Classes</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">97<span>%</span></div>
+      <div class="stat-label">Top-1 Accuracy</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">&lt;1<span>s</span></div>
+      <div class="stat-label">Inference Time</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">8<span>k+</span></div>
+      <div class="stat-label">Training Images</div>
+    </div>
+  </div>
+</section>
+
+<!-- UPLOAD -->
+<section class="upload-section" id="upload">
+  <div class="section-header">
+    <span class="section-eyebrow">Vehicle Classifier</span>
+    <h2>Run Recognition</h2>
+    <p>Drag and drop or select a vehicle image to identify make, model and year.</p>
+  </div>
+
+  <div class="upload-card">
+    <form action="/predict" method="POST" enctype="multipart/form-data" id="predict-form">
+
+      <div class="upload-zone" id="upload-zone">
+        <div class="scanline"></div>
+
+        <div class="upload-icon">
+          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
+          </svg>
+        </div>
+
+        <h3>Drop your vehicle image here</h3>
+        <p>Supports JPG, JPEG, PNG, WEBP — up to 10 MB</p>
+
+        <div>
+          <span class="file-tag">
+            <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M3 9h18M9 21V9"/>
+            </svg>
+            Browse Files
+          </span>
+        </div>
+
+        <input type="file" name="image" accept="image/*" required id="file-input">
+      </div>
+
+      <p class="file-name-display" id="file-name">No file selected</p>
+
+      <button type="submit" class="btn-analyze" id="submit-btn">
+        Analyze Vehicle
+      </button>
+
+    </form>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section" id="features">
+  <div class="section-header">
+    <span class="section-eyebrow">Capabilities</span>
+    <h2>What Powers It</h2>
+    <p>Built on proven deep learning techniques, fine-tuned specifically for automotive classification.</p>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🧠</div>
+      <h3>Transfer Learning</h3>
+      <p>MobileNetV2 pre-trained on ImageNet, fine-tuned on 16,185 car images to maximize classification accuracy with minimal compute.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <h3>196 Vehicle Classes</h3>
+      <p>Stanford Cars Dataset spanning 196 categories — from the Acura TL 2012 to the Volvo C30 2012, covering major manufacturers worldwide.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>Real-Time Inference</h3>
+      <p>Lightweight MobileNetV2 architecture enables sub-second predictions on CPU, with full confidence score output for every classification.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔬</div>
+      <h3>OpenCV Preprocessing</h3>
+      <p>Images are normalized, resized and passed through an optimized preprocessing pipeline before reaching the model to ensure reliable results.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TECH STACK -->
+<section class="tech-section" id="tech">
+  <div class="section-header">
+    <span class="section-eyebrow">Built With</span>
+    <h2>Technology Stack</h2>
+  </div>
+
+  <div class="tech-grid">
+    <div class="tech-card">
+      <span class="tech-card-icon">🐍</span>
+      <div class="tech-card-name">Python</div>
+    </div>
+    <div class="tech-card">
+      <span class="tech-card-icon">🔷</span>
+      <div class="tech-card-name">TensorFlow</div>
+    </div>
+    <div class="tech-card">
+      <span class="tech-card-icon">🕸️</span>
+      <div class="tech-card-name">CNN</div>
+    </div>
+    <div class="tech-card">
+      <span class="tech-card-icon">📱</span>
+      <div class="tech-card-name">MobileNetV2</div>
+    </div>
+    <div class="tech-card">
+      <span class="tech-card-icon">👁️</span>
+      <div class="tech-card-name">OpenCV</div>
+    </div>
+    <div class="tech-card">
+      <span class="tech-card-icon">🌶️</span>
+      <div class="tech-card-name">Flask</div>
+    </div>
+    <div class="tech-card">
+      <span class="tech-card-icon">🧩</span>
+      <div class="tech-card-name">Jinja2</div>
+    </div>
+    <div class="tech-card">
+      <span class="tech-card-icon">📊</span>
+      <div class="tech-card-name">NumPy</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">AI<span>Car</span>Vision</div>
+  <p class="footer-copy">Car Model Recognition System · AI &amp; Data Science Project</p>
+</footer>
+
+<script>
+  // Navbar scroll state
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // File input display
+  const fileInput  = document.getElementById('file-input');
+  const fileNameEl = document.getElementById('file-name');
+  const uploadZone = document.getElementById('upload-zone');
+
+  fileInput.addEventListener('change', () => {
+    const f = fileInput.files[0];
+    fileNameEl.textContent = f
+      ? `✓  ${f.name}  (${(f.size / 1024).toFixed(1)} KB)`
+      : 'No file selected';
+  });
+
+  // Drag-and-drop
+  uploadZone.addEventListener('dragover',  e => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
+  uploadZone.addEventListener('dragleave', ()  => uploadZone.classList.remove('drag-over'));
+  uploadZone.addEventListener('drop',      e  => {
+    e.preventDefault();
+    uploadZone.classList.remove('drag-over');
+    if (e.dataTransfer.files.length) {
+      fileInput.files = e.dataTransfer.files;
+      fileNameEl.textContent = `✓  ${e.dataTransfer.files[0].name}`;
+    }
+  });
+
+  // Submit loading state
+  document.getElementById('predict-form').addEventListener('submit', () => {
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = 'Analyzing…';
+    btn.style.opacity = '0.75';
+    btn.disabled = true;
+  });
+</script>
+
+</body>
+</html>
